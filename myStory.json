@@ -1,58 +1,177 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Life as a Little Bug",
+    "Credits": "Created by Rayden Lieu (rtlieu@ucsc.edu).",
+    "InitialLocation": "Egg",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Egg": {
+            "Body": "You're inside an egg. Something primal urges you to<br>",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
+                    "Text": "Break out",
+                    "Target": "OutEgg"
                 }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+        "OutEgg": {
+            "Body": "<br>You break free from your egg, spilling out onto the honeycomb beneath.<br><br>An adult worker walks up to you.<br><br>'Oh! Good Morning little one, you must be one of the new-bees. Ha! Get it?<br>Anyways, you've been assigned to the armory, go down the right tunnel!'<br>",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Look around",
+                    "Target": "Hive Background"
+                }
+            ]
+        },
+        "Hive Background": {
+            "Body": "<br>You're in your hive. Hexagons line the floor, the walls, and the ceiling, tunnels winding off in every direction.<br>Your sisters buzz around you.<br>",
+            "Choices": [
+                {
+                    "Text": "Left",
+                    "Target": "Left Tunnel"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
+                    "Text": "Right",
+                    "Target": "Right Tunnel"
                 }
             ]
         },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
+        "Left Tunnel": {
+            "Body": "<br>You enter the left tunnel, walking through a crowd of bees.<br>",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Royal Chambers",
+                    "Target": "Royal Chambers"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
+                    "Text": "Back",
+                    "Target": "Hive Background"
                 }
             ]
-        },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        },        
+        "Royal Chambers": {
+            "Body": "<br>You enter the royal chambers. The Queen is sitting upon a throne, hundreds of bees buzzing past.<br>She glances at you for just a moment before handing a paper to another bee, who flies over to you and gives you a piece of paper.<br><br>'This is a decree stating that you are allowed into the armory. Now go little one, the queen is busy enough as is.'",
+            "Gives": ["Royal Decree"],
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Return to the hive",
+                    "Target": "Hive Background"
+                }
+            ]
+        },        
+        "Right Tunnel": {
+            "Body": "<br>You enter the right tunnel, bees adorned with helmets of wax and spears of sticks everywhere.",
+            "Choices": [
+                {
+                    "Text": "Forward",
+                    "Target": "Armory Door"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Back",
+                    "Target": "Hive Background"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Armory Door": {
+            "Body": "<br>You walk up to the armory. A guard stops you, towering above.<br><br>'Hey. If you wanna go in here, you'll need a decree from the Queen.'",
+            "Choices": [
+                {
+                    "Text": "Forward",
+                    "Target": "Armory",
+                    "Requires": "Royal Decree",
+                    "LockedText": "The guard blocks you. You need a Royal Decree to enter."
+                },
+                {
+                    "Text": "Back",
+                    "Target": "Right Tunnel"
+                }
+            ]
+        },
+        "Armory": {
+            "Body": "<br>You enter the armory, and are handed a helmet, along with a small spear made of a thorn.",
+            "Gives": ["Helmet", "Thorn Spear"],
+            "Choices": [
+                {
+                    "Text": "Back to Hive",
+                    "Target": "Hive Background 2"
+                }
+            ]
+        },
+        "Hive Background 2": {
+            "Body": "<br>You're in your hive. A soldier walks up to you.<br><br>'Ah, newbie. You're with me, we're gonna go collect pollen.'",
+            "Choices": [
+                {
+                    "Text": "Outside",
+                    "Target": "Outside"
+                }
+            ]
+        },
+        "Outside": {
+            "Body": "<br>You're outside your hive. The sun is low in the sky, casting an orange haze over the clouds.<br>You fly down with your senior warrior, landing on a firm blade of grass.<br><br>'Hey, think I see a flower over there. Looks like a dandelion. Let's go.'",
+            "Choices": [
+                {
+                    "Text": "Flower",
+                    "Target": "Flower"
+                }
+            ]
+        },
+        "Flower": {
+            "Body": "<br>You fly over to the flower, hovering above the dandelion. It shines in the light.",
+            "Choices": [
+                {
+                    "Text": "Petal",
+                    "Target": "Petal"
+                }
+            ]
+        },
+        "Petal": {
+            "Body": "<br>You land on a petal, before walking up to the stamen, pollen glimmering before you.",
+            "Interactables": [
+                {
+                "Text": "Collect Pollen.",
+                "Message": "You collect pollen, stashing it away in pouches next to your legs.",
+                "Item": "Pollen"
+                }
+            ],
+            "Choices": [
+                {
+                    "Text": "Pollen Collector",
+                    "Target": "Pollen Collector"
+                }
+            ]
+        },
+        "Pollen Collector": {
+            "Body": "<br>You fly over to the pollen collector. She waves you over.<br><br>'Hey there, I'll take your pollen off your hands! Whatcha gonna do now?'",
+            "Choices": [
+                {
+                    "Text": "Go home and sleep",
+                    "Target": "Hive Sleep"
+                },
+                {
+                    "Text": "Stay Outside",
+                    "Target": "Stay Out"
+                }
+            ]
+        },
+        "Hive Sleep": {
+            "Body": "<br>You go home after a long day, cuddled up in your honeycomb, and fall asleep."
+        },
+        "Stay Out": {
+            "Body": "<br>You decide to stay out. Your elder warrior sister told you to be safe before she flew off to the hive. It's getting late.",
+            "Choices": [
+                {
+                    "Text": "What's that buzzing sound?",
+                    "Target": "Wasp Attack"
+                }
+            ]
+        },
+        "Wasp Attack": {
+            "Body": "<br>You wait for a moment, listening to thie weird buzzing, before a wasp LAUNCHES at you!",
+            "Choices": [
+                {
+                    "Text": "RUNNNNNN",
+                    "Target": "Hive Sleep"
+                }
+            ]
         }
+        
     }
 }

@@ -9,6 +9,11 @@ class Engine {
         this.firstSceneClass = firstSceneClass;
         this.storyDataUrl = storyDataUrl;
 
+        //inventory initialization
+        this.state = {
+            inventory: []
+        };
+
         this.header = document.body.appendChild(document.createElement("h1"));
         this.output = document.body.appendChild(document.createElement("div"));
         this.actionsContainer = document.body.appendChild(document.createElement("div"));
@@ -28,14 +33,37 @@ class Engine {
         this.scene.create(data);
     }
 
-    addChoice(action, data) {
+    addChoice(action, data, disabled = false) {
+        let button = this.actionsContainer.appendChild(document.createElement("button"));
+        button.innerText = action;
+        if (!disabled) {
+            button.onclick = () => {
+                while(this.actionsContainer.firstChild) {
+                    this.actionsContainer.removeChild(this.actionsContainer.firstChild)
+                }
+            this.scene.handleChoice(data);
+        }
+        }
+    }
+
+    addInteractable(action, data, item) {
         let button = this.actionsContainer.appendChild(document.createElement("button"));
         button.innerText = action;
         button.onclick = () => {
-            while(this.actionsContainer.firstChild) {
-                this.actionsContainer.removeChild(this.actionsContainer.firstChild)
-            }
-            this.scene.handleChoice(data);
+            this.scene.handleInteractable(data);
+            this.engine.addItem(item);
+        }
+    }
+
+    //items!!
+
+    hasItem(item) {
+        return this.state.inventory.includes(item);
+    }
+
+    addItem(item) {
+        if (item && !this.hasItem(item)) {
+            this.state.inventory.push(item);
         }
     }
 
